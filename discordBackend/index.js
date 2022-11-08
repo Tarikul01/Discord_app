@@ -1,15 +1,12 @@
-const express=require("express");
-const app=express();
-const http=require("http");
-const cors=require("cors");
 const mongoose=require("mongoose");
+const app=require("./app");
+
+
+//All third party middleware
 require("dotenv").config();
 
-app.use(cors());
-app.get("/",(req,res)=>{
-    res.send("hello");
-})
 
+//Database Connections 
 mongoose.connect(process.env.MONGO_URL,()=>{
     try {
         
