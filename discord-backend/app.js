@@ -10,4 +10,5 @@ app.use(express.json());
 // use all  route middleware
 app.use('/v1/api/auth', authRouter);
 
+
 module.exports = app;
