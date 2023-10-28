@@ -18,7 +18,7 @@ const validateMiddleware=require("../middlewares/auth/validateMiddlware")
 
 
 router.post("/login",validateMiddleware(schema.loginSchema,"body"),controllers.postLogin)
-router.post("/register",validateMiddleware(schema.registerSchema,"body"),controllers.postRegister)
+router.post("/register",validateMiddleware(schema.registerSchema,"body"),controllers.postRegister);
 
 
 // Test router 
