@@ -7,7 +7,7 @@ const Register = async (req, res) => {
 		const { username, email, password } = req.body;
 
 		// Check user exits or not
-		const userExits = await User.exists({ email: email });
+		const userExits = await User.exists({ mail: email });
 		if (userExits) {
 			return res.status(409).send('E-mail already in use! ');
 		}
@@ -18,7 +18,7 @@ const Register = async (req, res) => {
 		// // Create user documents
 		const user = await User.create({
 			username,
-			email: email.toLowerCase(),
+			mail: email.toLowerCase(),
 			password: encryptPassword,
 		});
 
@@ -26,7 +26,7 @@ const Register = async (req, res) => {
 		const token = jwt.sign(
 			{
 				userId: user._id,
-				email,
+				mail:email,
 			},
 			process.env.TOKEN_KEY,
 			{
@@ -36,7 +36,7 @@ const Register = async (req, res) => {
 
 		res.status(201).json({
 			userDetails: {
-				email: user.email,
+				mail: user.email,
 				token: token,
 				username: user.username,
 			},

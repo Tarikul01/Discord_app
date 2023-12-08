@@ -5,8 +5,8 @@ import FriendsSidebar from "./FriendsSidebar/FriendsSidebar";
 import Messenger from "./Messenger/Messenger";
 import AppBar from "./AppBar.js/AppBar";
 import { logout } from "../shared/utils/auth";
-import {connect} from "react-redux";
-import {getActions} from "../store/actions/authActions";
+import { connect } from "react-redux";
+import { getActions } from "../store/actions/authActions";
 import { connectWithSocketServer } from "../realtimeCommunication/socketConnection";
 
 const Wrapper = styled("div")({
@@ -15,14 +15,15 @@ const Wrapper = styled("div")({
   display: "flex",
 });
 
-const Dashboard = ({setUserDetails}) => {
+const Dashboard = ({ setUserDetails }) => {
   useEffect(() => {
     const userDetails = localStorage.getItem("user");
     if (!userDetails) {
       logout();
-    }else{
-      setUserDetails(JSON.parse(userDetails))
-      connectWithSocketServer()
+    } else {
+      setUserDetails(JSON.parse(userDetails));
+      console.log("SocketConnection Rerender Check");
+      connectWithSocketServer(JSON.parse(userDetails));
     }
   }, []);
   return (
@@ -35,10 +36,10 @@ const Dashboard = ({setUserDetails}) => {
   );
 };
 
-const mapActionsToProps=(dispatch)=>{
+const mapActionsToProps = (dispatch) => {
   return {
-    ...getActions(dispatch)
-  }
-}
+    ...getActions(dispatch),
+  };
+};
 
-export default connect(null,mapActionsToProps)(Dashboard);
+export default connect(null, mapActionsToProps)(Dashboard);

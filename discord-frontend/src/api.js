@@ -12,26 +12,40 @@ apiClient.interceptors.request.use((config)=>{
 		config.headers.Authorization=`Bearer ${token}`;
 	}
 	return config;
-},(err)=>{
-	return Promise.reject(err)
+},(exception)=>{
+	return Promise.reject(exception)
 })
 // Public routes 
 export const login = async (data) => {
 	try {
 		return await apiClient.post('/auth/login', data);
-	} catch (err) {
-		return { error: true, err };
+	} catch (exception) {
+		return { error: true, exception };
 	}
 };
 export const register = async (data) => {
 	try {
 		return await apiClient.post('/auth/register', data);
-	} catch (err) {
-		return { error: true, err };
+	} catch (exception) {
+		return { error: true, exception };
 	}
 };
 
 // Secured routes 
+export const sendFriendInviations=async (data)=>{
+   try {
+	return await apiClient.post("/friend-invitation/invite",data)
+	
+   } catch (exception) {
+	checkResponseCode(exception);
+	return {
+		error:true,
+		exception
+	}
+	
+   }
+}
+
 const checkResponseCode=(err)=>{
 	const reponseCode=err?.response?.status;
 	if(reponseCode){
