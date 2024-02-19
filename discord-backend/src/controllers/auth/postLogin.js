@@ -6,7 +6,7 @@ const Login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    const user = await User.findOne({ email: email.toLowerCase() });
+    const user = await User.findOne({ mail: email.toLowerCase() });
     if (user && (await bcrypt.compare(password, user.password))) {
       //    Create token
       const token = jwt.sign(
@@ -22,7 +22,7 @@ const Login = async (req, res) => {
 
       return res.status(200).json({
         userDetails: {
-          mail: user.email,
+          mail: user.mail,
           token: token,
           username: user.username,
         },

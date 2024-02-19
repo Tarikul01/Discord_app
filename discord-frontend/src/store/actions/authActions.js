@@ -17,8 +17,8 @@ export const getActions = (dispatch) => {
 const login = (userDetails, navigate) => {
   return async (dispatch) => {
     const response = await api.login(userDetails);
-    console.log(response);
-    if (response.error) {
+    console.log("test Login",response);
+    if (response.error) { 
       //handle error
       console.log("Eroroororrororr", response);
       dispatch(openAlertMessage(response?.err?.response?.data?.error));

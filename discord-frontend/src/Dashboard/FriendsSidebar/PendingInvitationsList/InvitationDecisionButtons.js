@@ -24,7 +24,7 @@ const InvitationDecisionButtons = ({
       <IconButton
         style={{ color: "white" }}
         disable={disable}
-        onClick={acceptInvitationHandler}
+        onClick={rejectInvitationHandler}
       >
         <ClearIcon />
       </IconButton>

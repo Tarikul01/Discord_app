@@ -1,17 +1,12 @@
 const friendInvitation = require("../../models/friendInvitation");
 const User = require("../../models/user");
+const friendsUpdate = require("../../../socketHandler/updates/friends");
 const postInvitation = async (req, res) => {
   const { targetMailAddress } = req.body;
 
   const { userId, mail } = req.user;
 
-  console.log(
-    targetMailAddress,
-    userId,
-    mail,
-    mail.toLowerCase() === targetMailAddress.toLowerCase()
-  );
-
+  clearInterval;
   // check if friend that we would like to nivite is not user
   if (mail.toLowerCase() === targetMailAddress.toLowerCase()) {
     return res
@@ -56,6 +51,8 @@ const postInvitation = async (req, res) => {
     senderId: userId,
     receiverId: targetUser._id,
   });
+  //   send pending invitations update to  specific user
+  friendsUpdate.updateFriendPendingInvitations(targetUser._id.toString());
 
   return res.status(201).send("Invitation has been sent !");
 };
