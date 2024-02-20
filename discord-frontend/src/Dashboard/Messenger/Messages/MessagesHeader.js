@@ -6,8 +6,8 @@ import Avatar from "../../../shared/components/Avatar";
 
 const MainContainer = styled("div")({
   width: "98%",
-  display:"column",
-  marginTop:"10px",
+  display: "column",
+  marginTop: "10px",
 });
 const MessagesHeader = ({ name }) => {
   return (

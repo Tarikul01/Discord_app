@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { styled } from "@mui/system";
 import { connect } from "react-redux";
+import { sendDirectMessage } from "../../realtimeCommunication/socketConnection";
 const MainContainer = styled("div")({
   height: "60px",
   width: "100%",
@@ -33,7 +34,11 @@ const NewMessageInput = ({ chosenChatDetails }) => {
   };
   const handleSendMessage = () => {
     console.log("new Messages");
+    if(message.length>0){
+     sendDirectMessage({ receiverUserID:chosenChatDetails.id,
+      content:message})
     setMessage("");
+    }
   };
   return (
     <MainContainer>

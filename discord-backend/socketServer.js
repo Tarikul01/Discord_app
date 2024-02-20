@@ -2,6 +2,7 @@ const authSocket = require("./src/middlewares/authSocket");
 const newConnectionHandler = require("./socketHandler/newConnectionHandler");
 const disconnectHandler = require("./socketHandler/disconnectHandler");
 const serverStore = require("./serverStore");
+const directMessageHandler=require("./socketHandler/directMessageHandler");
 const registerSocketServer = (server) => {
   const io = require("socket.io")(server, {
     cors: {
@@ -23,7 +24,9 @@ const registerSocketServer = (server) => {
     // New socketConnection handler
     newConnectionHandler(socket, io);
     emitOnlineUsers();
-
+    socket.on("direct-message",(data)=>{
+      directMessageHandler(socket,data )
+    })
     socket.on("disconnect", () => {
       disconnectHandler(socket);
     });
