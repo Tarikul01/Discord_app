@@ -11,7 +11,8 @@ const rootReducer = combineReducers({
 	alert:alertReducers,
 	friends:friendsReducer,
 	room:roomReducers,
-	chat:chatReducer
+	chat:chatReducer,
+	room:roomReducers
 });
 
 const store = createStore(

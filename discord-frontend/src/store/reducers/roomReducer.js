@@ -1,3 +1,5 @@
+import { roomActions } from "../actions/roomActions";
+
 const initState={
     isUserInRoom:false,
     isUserRoomCreator:false,
@@ -10,6 +12,11 @@ const initState={
 }
 const reducer=(state=initState,action)=>{
 switch(action.type){
+    case roomActions.OPEN_ROOM:
+        return  {
+            ...state,isUserInRoom:action.isUserInRoom,
+            isUserRoomCreator:action.isUserRoomCreator
+        }
     default:
         return state;
 }
