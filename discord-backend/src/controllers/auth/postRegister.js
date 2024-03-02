@@ -39,6 +39,7 @@ const Register = async (req, res) => {
 				mail: user.email,
 				token: token,
 				username: user.username,
+				_id:user._id,
 			},
 		});
 	} catch (error) {

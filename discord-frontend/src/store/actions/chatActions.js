@@ -11,6 +11,7 @@ export const chatActions={
 export const getActions=(dispatch)=>{
     return{
         setChosenChatDetails:(details,chatType)=>dispatch(setChosenChatDetails(details,chatType)),
+        setMessages:(messages)=>dispatch(setMessage(messages))
     }
 }
 export const setChosenChatDetails=(chatDetails,type)=>{

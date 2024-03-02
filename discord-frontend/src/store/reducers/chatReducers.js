@@ -12,12 +12,12 @@ const reducer=(state=initState,action)=>{
                 ...state,
                 chosenChatDetails:action.chatDetails,
                 chatType:action.chatType,
-                message:[]
+                messages:[]
             };
         case chatActions.SET_MESSAGES:
                 return {
                     ...state,
-                    message:action.message
+                    messages:action.messages
                 };
         default:
             return {

@@ -8,13 +8,13 @@ const MainContainer = styled("div")({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  bottom:"0",
+  bottom: "0",
 });
 
 const Input = styled("input")({
   backgroundColor: "#2f3136",
   width: "98%",
-  height:"44px",
+  height: "44px",
   color: "white",
   border: "none",
   borderRadius: "8px",
@@ -34,10 +34,12 @@ const NewMessageInput = ({ chosenChatDetails }) => {
   };
   const handleSendMessage = () => {
     console.log("new Messages");
-    if(message.length>0){
-     sendDirectMessage({ receiverUserID:chosenChatDetails.id,
-      content:message})
-    setMessage("");
+    if (message.length > 0) {
+      sendDirectMessage({
+        receiverUserId: chosenChatDetails.id,
+        content: message,
+      });
+      setMessage("");
     }
   };
   return (
